@@ -49,15 +49,28 @@ A low-latency, multi-modal human-computer interface that bridges physical hardwa
 
 ---
 
+## Prerequisites
+
+* **Arduino IDE** with the **ESP32 Board Package** installed (via *Boards Manager* using the Espressif board manager URL).
+* **Python 3.8+** installed on the host machine.
+* **2.4 GHz Wi-Fi Network:** Both the ESP32-CAM and the host PC must be connected to the exact same **2.4 GHz** network (the ESP32 does not support 5 GHz Wi-Fi).
+
+---
+
 ## Setup & Usage
 
 ### 1. Flash the ESP32-CAM
-1. Open `esp32.ino` in the Arduino IDE.
-2. Replace the Wi-Fi placeholders (`YOUR_SSID` and `YOUR_PASSWORD`) with your network credentials.
-3. Select **AI Thinker ESP32-CAM**, bridge `GPIO 0` to `GND`, and upload the sketch.
-4. Remove the `GPIO 0` jumper, press Reset, and note the IP address printed in the Serial Monitor.
+1. Connect the ESP32-CAM to your PC using the FTDI programmer (refer to the FTDI wiring table above) and bridge **GPIO 0 to GND**.
+2. Open `esp32.ino` in the Arduino IDE.
+3. Replace the Wi-Fi placeholders (`YOUR_SSID` and `YOUR_PASSWORD`) with your 2.4 GHz network credentials.
+4. Select **AI Thinker ESP32-CAM** under *Tools > Board*, choose the correct COM port, and upload the sketch.
+5. Disconnect the **GPIO 0 to GND** jumper, press the **RST** button on the ESP32-CAM, and open the Serial Monitor at **115200 baud** to note the printed IP address.
 
-### 2. Run the Python Host
-1. Install dependencies:
+### 2. Wire the Peripherals
+Connect the SG90 servo (using an external 5V power supply with a shared common ground) and the Green LED with a 220Ω–330Ω resistor according to the Peripheral Connections table above.
+
+### 3. Run the Python Host
+1. Clone the repository and navigate into the project directory:
    ```bash
-   pip install -r requirements.txt
+   git clone [https://github.com/Shreyas1608/](https://github.com/Shreyas1608/)<repo-name>.git
+   cd <repo-name>
